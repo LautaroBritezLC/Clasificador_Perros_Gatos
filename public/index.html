@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PetVision AI - Clasificador de Mascotas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/animations.css">
+  </head>
+  <body>
+    <div id="app" class="container">
+      <header class="header">
+        <div class="logo-container">
+          <div class="logo">PetVision<span>AI</span></div>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="hero">
+          <h1 class="title">Clasificador de Mascotas con IA</h1>
+          <p class="subtitle">Descubre si tu imagen contiene un perro o un gato utilizando tecnología de inteligencia artificial avanzada</p>
+          
+          <div class="pet-animations">
+            <div class="pet dog-animation" id="dogAnimation"></div>
+            <div class="pet cat-animation" id="catAnimation"></div>
+          </div>
+        </section>
+
+        <section class="camera-section">
+          <div class="camera-container">
+            <div id="cameraPreview" class="camera-preview">
+              <div class="camera-placeholder">
+                <div class="camera-icon"></div>
+                <p>Activa la cámara para comenzar</p>
+              </div>
+              <video id="videoElement" autoplay playsinline></video>
+              <canvas id="canvasElement"></canvas>
+            </div>
+            <div class="camera-controls">
+              <button id="cameraButton" class="primary-button">
+                <span class="button-icon camera-icon-small"></span>
+                <span class="button-text">Activar Cámara</span>
+              </button>
+              <button id="captureButton" class="secondary-button" disabled>
+                <span class="button-icon capture-icon"></span>
+                <span class="button-text">Capturar</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="result-section" id="resultSection">
+          <h2>Resultado</h2>
+          <div class="result-container">
+            <div class="result-placeholder" id="resultPlaceholder">
+              <p>El resultado aparecerá aquí</p>
+            </div>
+            <div class="result-display" id="resultDisplay">
+              <div class="result-icon" id="resultIcon"></div>
+              <div class="result-text" id="resultText"></div>
+              <div class="confidence-value" id="confidenceValue"></div> <!-- NUEVO -->
+              <div class="confidence-meter">
+                <div class="confidence-bar" id="confidenceBar"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>Creado con <span class="heart">♥</span> por PetVision AI &copy; 2025</p>
+      </footer>
+    </div>
+    
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>
