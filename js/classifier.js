@@ -10,7 +10,7 @@ let otrocanvas = null;
 export async function initClassifier() {
   try {
     console.log("🔁 Cargando modelo...");
-    modelo = await tf.loadGraphModel("Clasificador_Perros_Gatos/model.json");
+    modelo = await tf.loadGraphModel("model.json"); // ✅ CORRECTO
     console.log("✅ Modelo cargado correctamente:", modelo);
   } catch (error) {
     console.error("❌ Error cargando el modelo:", error);
