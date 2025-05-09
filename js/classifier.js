@@ -1,4 +1,4 @@
-import * as tf from '@tensorflow/tfjs';
+// import * as tf from '@tensorflow/tfjs';
 import { showLoadingAnimation, hideLoadingAnimation, showResultAnimation } from './animations.js';
 
 
@@ -10,7 +10,7 @@ let otrocanvas = null;
 export async function initClassifier() {
   try {
     console.log("🔁 Cargando modelo...");
-    modelo = await tf.loadGraphModel("/model.json");
+    modelo = await tf.loadGraphModel("model.json");
     console.log("✅ Modelo cargado correctamente:", modelo);
   } catch (error) {
     console.error("❌ Error cargando el modelo:", error);
