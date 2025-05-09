@@ -1,7 +1,7 @@
-import '../css/base.css';
-import '../css/layout.css';
-import '../css/components.css';
-import '../css/animations.css';
+// import '../css/base.css';
+// import '../css/layout.css';
+// import '../css/components.css';
+// import '../css/animations.css';
 import { initCamera } from './camera.js';
 import { initAnimations } from './animations.js';
 import { initClassifier, setupPrediction, predecir } from './classifier.js';
