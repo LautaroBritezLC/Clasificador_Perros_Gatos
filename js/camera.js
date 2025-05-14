@@ -57,6 +57,13 @@ async function startCamera() {
     videoStream = await navigator.mediaDevices.getUserMedia(constraints);
     videoElement.srcObject = videoStream;
 
+        // ✅ aplicar clase mirror dinámicamente
+    if (usingFrontCamera) {
+      videoElement.classList.add('mirror');
+    } else {
+      videoElement.classList.remove('mirror');
+    }
+
     return new Promise((resolve) => {
       videoElement.onloadedmetadata = () => {
         videoElement.play();

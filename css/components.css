@@ -93,8 +93,8 @@
   object-fit: cover;
 }
 
-#videoElement {
-  transform: scaleX(-1); /* Mirror the video */
+video.mirror {
+  transform: scaleX(-1);
 }
 
 #canvasElement {
