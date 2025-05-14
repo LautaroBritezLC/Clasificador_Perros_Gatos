@@ -94,9 +94,16 @@ function captureImage() {
   canvasElement.width = videoElement.videoWidth;
   canvasElement.height = videoElement.videoHeight;
 
-  context.translate(canvasElement.width, 0);
-  context.scale(-1, 1);
+  context.save(); // 🔁 Guardar estado actual
+
+  if (usingFrontCamera) {
+    // Solo espejar si es la cámara frontal
+    context.translate(canvasElement.width, 0);
+    context.scale(-1, 1);
+  }
+
   context.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
+  context.restore(); // 🔁 Restaurar estado
 
   const imageData = canvasElement.toDataURL('image/png');
 
@@ -108,6 +115,7 @@ function captureImage() {
     captureButton.disabled = false;
   }, 2000);
 }
+
 
 function showCameraError() {
   const cameraPlaceholder = document.querySelector('.camera-placeholder');
