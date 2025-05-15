@@ -11,6 +11,7 @@ export async function initClassifier() {
   try {
     console.log("🔁 Cargando modelo...");
     modelo = await tf.loadGraphModel("/Clasificador_Perros_Gatos/model.json"); // ✅ CORRECTO
+    // modelo = await tf.loadLayersModel("/Clasificador_Perros_Gatos/model.json");
     console.log("✅ Modelo cargado correctamente:", modelo);
   } catch (error) {
     console.error("❌ Error cargando el modelo:", error);
@@ -48,8 +49,17 @@ export function predecir() {
   const tensor = tf.tensor4d([arr]);
   const resultado = modelo.predict(tensor).dataSync();
   const confianza = resultado[0];
-  const porcentaje = Math.round(confianza * 100);
+  const porcentaje = Math.round(
+    confianza <= 0.5 ? (1 - confianza) * 100 : confianza * 100
+  );
+
+
+  console.log("🔎 Valor del modelo (sigmoid):", confianza);
+
   const respuesta = confianza <= 0.5 ? "🐱 Gato" : "🐶 Perro";
+
+  console.log("📷 Predicción:", respuesta, "| Confianza:", confianza);
+
 
   // Mostrar resultado
   document.getElementById("resultText").innerText = respuesta;
@@ -62,7 +72,8 @@ export function predecir() {
   // Mostrar barra con la confianza calculada
   const bar = document.getElementById("confidenceBar");
   bar.style.transition = "width 1s ease-in-out";
-  bar.style.width = `${Math.round(confianza * 100)}%`;
+  bar.style.width = `${porcentaje}%`;  // ✅ ya corregido
+
 
   // Ocultar animación de procesamiento (por si la querés usar para resetear algo)
   hideLoadingAnimation();

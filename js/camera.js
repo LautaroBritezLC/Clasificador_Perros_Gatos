@@ -1,33 +1,38 @@
 let videoStream = null;
 let isActive = false;
 let usingFrontCamera = false; // 🔄 Inicialmente usamos cámara trasera
+switchCameraButton.disabled = true;
 
 export function initCamera() {
   const cameraButton = document.getElementById('cameraButton');
   const captureButton = document.getElementById('captureButton');
   const switchCameraButton = document.getElementById('switchCameraButton');
   const cameraPlaceholder = document.querySelector('.camera-placeholder');
+  switchCameraButton.disabled = true; // ✅ Inicialmente deshabilitado
 
-  cameraButton.addEventListener('click', async () => {
-    if (!isActive) {
-      try {
-        await startCamera();
-        cameraPlaceholder.style.display = 'none';
-        captureButton.disabled = false;
-        cameraButton.querySelector('.button-text').textContent = 'Desactivar Cámara';
-        isActive = true;
-      } catch (error) {
-        console.error('Error accessing camera:', error);
-        showCameraError();
-      }
-    } else {
-      stopCamera();
-      cameraPlaceholder.style.display = 'flex';
-      captureButton.disabled = true;
-      cameraButton.querySelector('.button-text').textContent = 'Activar Cámara';
-      isActive = false;
+cameraButton.addEventListener('click', async () => {
+  if (!isActive) {
+    try {
+      await startCamera();
+      cameraPlaceholder.style.display = 'none';
+      captureButton.disabled = false;
+      switchCameraButton.disabled = false;  // ✅ Habilitar
+      cameraButton.querySelector('.button-text').textContent = 'Desactivar Cámara';
+      isActive = true;
+    } catch (error) {
+      console.error('Error accessing camera:', error);
+      showCameraError();
     }
-  });
+  } else {
+    stopCamera();
+    cameraPlaceholder.style.display = 'flex';
+    captureButton.disabled = true;
+    switchCameraButton.disabled = true;  // ✅ Deshabilitar
+    cameraButton.querySelector('.button-text').textContent = 'Activar Cámara';
+    isActive = false;
+  }
+});
+
 
   captureButton.addEventListener('click', () => {
     if (isActive) captureImage();
